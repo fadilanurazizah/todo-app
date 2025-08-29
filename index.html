@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BlueTech - Company Profile</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      min-height: 100vh;
+    }
+
+    /* Navbar */
+    nav {
+      background: linear-gradient(135deg, rgba(30, 60, 114, 0.95) 0%, rgba(42, 82, 152, 0.95) 100%);
+      backdrop-filter: blur(10px);
+      padding: 1rem 5%;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: white;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .logo svg {
+      width: 45px;
+      height: 45px;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      padding: 0.7rem 1.2rem;
+      border-radius: 25px;
+    }
+
+    nav a:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Home Section */
+    .banner {
+      margin-top: 80px;
+      position: relative;
+      height: 85vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 20px;
+      margin-bottom: 2rem;
+    }
+
+    .banner-photo {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .banner-photo::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(30, 60, 114, 0.8) 0%, rgba(42, 82, 152, 0.6) 100%);
+      z-index: 2;
+    }
+
+    .banner-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .banner-content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      color: white;
+      padding: 2rem;
+    }
+
+    .banner h1 {
+      font-size: 3.2rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .banner p {
+      font-size: 1.3rem;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+      animation: fadeInUp 1s ease-out 0.3s both;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Sections */
+    section {
+      padding: 4rem 5%;
+      background: white;
+      margin: 2rem 0;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(30, 60, 114, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, #1e3c72 0%, #2a5298 50%, #3b82f6 100%);
+    }
+
+    section h2 {
+      text-align: center;
+      margin-bottom: 3rem;
+      font-size: 2.8rem;
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #3b82f6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
+    }
+
+    /* Profile Section */
+    .company-info {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .company-info h3 {
+      font-size: 2.2rem;
+      color: #1e3c72;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .company-info > p {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: #555;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .vision-mission {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .vision, .mission {
+      background: linear-gradient(135deg, #f0f7ff 0%, #e1f1ff 100%);
+      padding: 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(30, 60, 114, 0.12);
+      border: 1px solid rgba(30, 60, 114, 0.1);
+    }
+
+    .vision h4, .mission h4 {
+      font-size: 1.4rem;
+      color: #1e3c72;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .vision p, .mission p, .mission li {
+      color: #555;
+      line-height: 1.7;
+    }
+
+    .mission ul {
+      padding-left: 1.5rem;
+    }
+
+    .mission li {
+      margin-bottom: 0.7rem;
+    }
+
+    .company-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .stat {
+      text-align: center;
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #3b82f6 100%);
+      color: white;
+      padding: 2.5rem 1rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(30, 60, 114, 0.3);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .stat:hover::before {
+      left: 100%;
+    }
+
+    .stat:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(30, 60, 114, 0.4);
+    }
+
+    .stat h4 {
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .stat p {
+      font-size: 1rem;
+      opacity: 0.95;
+    }
+
+    /* Headquarter Section */
+    .headquarter {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+      margin-top: 2rem;
+    }
+
+    .city {
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #3b82f6 100%);
+      color: white;
+      padding: 3rem 2rem;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(30, 60, 114, 0.3);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .city::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .city:hover::before {
+      opacity: 1;
+    }
+
+    .city:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(30, 60, 114, 0.4);
+      color: white;
+    }
+
+    .city-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .city h3 {
+      font-size: 1.6rem;
+      margin-bottom: 0.7rem;
+      font-weight: 600;
+    }
+
+    .city p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      margin-bottom: 0.7rem;
+    }
+
+    .city span {
+      font-size: 0.95rem;
+      opacity: 0.8;
+    }
+
+    /* Contact Section */
+    .contact-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .contact-info {
+      margin-bottom: 3rem;
+    }
+
+    .contact-info h3 {
+      font-size: 2rem;
+      color: #1e3c72;
+      margin-bottom: 2rem;
+      font-weight: 600;
+    }
+
+    .form-output-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+
+    .info-item {
+      margin-bottom: 1.8rem;
+    }
+
+    .info-item strong {
+      display: block;
+      color: #2a5298;
+      margin-bottom: 0.7rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .info-item p {
+      color: #555;
+      line-height: 1.6;
+    }
+
+    /* Form Styles */
+    .contact-form {
+      background: linear-gradient(135deg, #f0f7ff 0%, #e1f1ff 100%);
+      padding: 3rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(30, 60, 114, 0.15);
+      border: 1px solid rgba(30, 60, 114, 0.1);
+    }
+
+    .form-group {
+      margin-bottom: 1.8rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      color: #1e3c72;
+      margin-bottom: 0.7rem;
+      font-size: 1.05rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 1.2rem;
+      border: 2px solid rgba(30, 60, 114, 0.2);
+      border-radius: 12px;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: all 0.3s ease;
+      background: white;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #2a5298;
+      box-shadow: 0 0 0 4px rgba(42, 82, 152, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .radio-group {
+      display: flex;
+      gap: 2rem;
+      margin-top: 0.5rem;
+    }
+
+    .radio-label {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 400 !important;
+      color: #555 !important;
+      margin-bottom: 0 !important;
+      font-size: 1rem !important;
+    }
+
+    .radio-label input[type="radio"] {
+      margin-right: 0.5rem;
+      width: auto;
+      padding: 0;
+    }
+
+    .error-message {
+      color: #dc3545;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      display: block;
+    }
+
+    .form-group input.error,
+    .form-group textarea.error {
+      border-color: #dc3545;
+    }
+
+    #contactForm button {
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #3b82f6 100%);
+      color: white;
+      padding: 1.2rem 2.5rem;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #contactForm button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    #contactForm button:hover::before {
+      left: 100%;
+    }
+
+    #contactForm button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(30, 60, 114, 0.3);
+    }
+
+    .output-section {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      padding: 2rem;
+      border-radius: 12px;
+      border: 1px solid #dee2e6;
+      min-height: 400px;
+    }
+
+    .current-time {
+      font-weight: 600;
+      color: #495057;
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      background: white;
+      border-radius: 8px;
+      border-left: 4px solid #1e3c72;
+    }
+
+    #result {
+      margin-top: 1.5rem;
+      padding: 1.2rem;
+      border-radius: 12px;
+      text-align: left;
+      font-weight: 500;
+      background: white;
+      border: 1px solid #dee2e6;
+    }
+
+    .result-content {
+      color: #495057;
+      line-height: 1.6;
+    }
+
+    .result-content p {
+      margin: 0.5rem 0;
+    }
+
+    .result-content strong {
+      color: #1e3c72;
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      color: white;
+      padding: 3rem 5%;
+      text-align: center;
+      border-radius: 20px 20px 0 0;
+      margin-top: 2rem;
+    }
+
+    .creator-info {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .creator-avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      border: 4px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease;
+      object-fit: cover;
+    }
+
+    .creator-avatar:hover {
+      transform: scale(1.1);
+    }
+
+    .creator-text {
+      text-align: left;
+    }
+
+    .creator-text h4 {
+      margin: 0;
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    .creator-text p {
+      margin: 0;
+      opacity: 0.9;
+      font-size: 0.95rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        padding: 1rem;
+        text-align: center;
+      }
+      
+      nav ul {
+        margin-top: 1rem;
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .banner {
+        margin-top: 130px;
+        height: 70vh;
+      }
+      
+      .banner h1 {
+        font-size: 2.2rem;
+      }
+      
+      .vision-mission {
+        grid-template-columns: 1fr;
+      }
+      
+      .company-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .headquarter {
+        grid-template-columns: 1fr;
+      }
+      
+      .contact-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      
+      .form-output-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      
+      .creator-info {
+        flex-direction: column;
+      }
+      
+      .creator-text {
+        text-align: center;
+      }
+      
+      section {
+        padding: 2.5rem 2rem;
+        margin: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .company-stats {
+        grid-template-columns: 1fr;
+      }
+      
+      section h2 {
+        font-size: 2.2rem;
+      }
+      
+      .banner h1 {
+        font-size: 1.8rem;
+      }
+      
+      .stat {
+        padding: 2rem 1rem;
+      }
+      
+      .stat h4 {
+        font-size: 2.2rem;
+      }
+      
+      .contact-form {
+        padding: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">
+      <svg viewBox="0 0 100 100" fill="currentColor">
+        <defs>
+          <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+            <stop offset="50%" style="stop-color:#e1f1ff;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#ffffff;stop-opacity:1" />
+          </linearGradient>
+        </defs>
+        <circle cx="50" cy="50" r="45" fill="url(#logoGradient)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+        <path d="M25 35 L50 25 L75 35 L75 50 L65 55 L50 50 L35 55 L25 50 Z" fill="#1e3c72" opacity="0.8"/>
+        <path d="M35 45 L50 40 L65 45 L65 60 L50 65 L35 60 Z" fill="#2a5298"/>
+        <circle cx="50" cy="30" r="3" fill="#3b82f6"/>
+        <circle cx="40" cy="50" r="2" fill="#60a5fa"/>
+        <circle cx="60" cy="50" r="2" fill="#60a5fa"/>
+        <path d="M45 70 Q50 75 55 70" stroke="#3b82f6" stroke-width="2" fill="none"/>
+      </svg>
+      BlueTech
+    </div>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#profile">Our Profile</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#contact">Contact Us</a></li>
+    </ul>
+  </nav>
+
+  <!-- Home -->
+  <section id="home" class="banner">
+    <div class="banner-photo">
+      <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&h=600&fit=crop" alt="Company Banner">
+    </div>
+    <div class="banner-content">
+      <h1 id="welcome">Hi Guest, Welcome to Our Website</h1>
+      <p>Welcome to the official website of BlueTech company</p>
+    </div>
+  </section>
+
+  <!-- Our Profile -->
+  <section id="profile" class="profile">
+    <h2>Our Profile</h2>
+    <div class="profile-content">
+      <div class="company-info">
+        <h3>About Our Company</h3>
+        <p>
+          BlueTech is a leading technology company focused on developing innovative digital solutions. 
+          Founded in 2020, we have served over 500+ clients throughout Indonesia with 
+          comprehensive IT services.
+        </p>
+        
+        <div class="vision-mission">
+          <div class="vision">
+            <h4>🎯 Company Vision</h4>
+            <p>To become the leading technology company in Indonesia that provides the best digital solutions for business transformation in the modern era.</p>
+          </div>
+          
+          <div class="mission">
+            <h4>🚀 Company Mission</h4>
+            <ul>
+              <li>Provide high-quality technology services</li>
+              <li>Develop innovative solutions for business needs</li>
+              <li>Build a professional, competent and dedicated team</li>
+              <li>Commit to client satisfaction and trust</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="company-stats">
+          <div class="stat">
+            <h4>500+</h4>
+            <p>Happy Clients</p>
+          </div>
+          <div class="stat">
+            <h4>50+</h4>
+            <p>Team Members</p>
+          </div>
+          <div class="stat">
+            <h4>1000+</h4>
+            <p>Completed Projects</p>
+          </div>
+          <div class="stat">
+            <h4>5+</h4>
+            <p>Years of Experience</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio - Our Headquarter -->
+  <section id="portfolio">
+    <h2>Our Headquarters</h2>
+    <div class="headquarter">
+      <a href="https://www.google.com/maps/search/Jl.+Sudirman+No.+123,+Jakarta+10250,+Indonesia" target="_blank" class="city">
+        <div class="city-icon">🏢</div>
+        <h3>Jakarta</h3>
+        <p>Head Office</p>
+        <span>Jl. Sudirman No. 123</span>
+      </a>
+      <a href="https://www.google.com/maps/search/Jl.+Dago+No.+456,+Bandung,+West+Java,+Indonesia" target="_blank" class="city">
+        <div class="city-icon">🏬</div>
+        <h3>Bandung</h3>
+        <p>Development Center</p>
+        <span>Jl. Dago No. 456</span>
+      </a>
+      <a href="https://www.google.com/maps/search/Jl.+Pemuda+No.+789,+Surabaya,+East+Java,+Indonesia" target="_blank" class="city">
+        <div class="city-icon">🏙️</div>
+        <h3>Surabaya</h3>
+        <p>Regional Office</p>
+        <span>Jl. Pemuda No. 789</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Message Us -->
+  <section id="contact">
+    <h2>Message Us</h2>
+    <div class="contact-container">
+      <div class="contact-info">
+        <h3>Get In Touch</h3>
+        <div class="info-item">
+          <strong>📍 Address:</strong>
+          <p>Jl. Sudirman No. 123, Jakarta 10250, Indonesia</p>
+        </div>
+        <div class="info-item">
+          <strong>📞 Phone:</strong>
+          <p>+62 21 1234 5678</p>
+        </div>
+        <div class="info-item">
+          <strong>✉️ Email:</strong>
+          <p>info@bluetech.com</p>
+        </div>
+        <div class="info-item">
+          <strong>🕒 Working Hours:</strong>
+          <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+        </div>
+      </div>
+      
+      <div class="form-output-container">
+        <div class="contact-form">
+          <form id="contactForm">
+            <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="text" id="name" name="name" required>
+              <span class="error-message" id="nameError"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="birthdate">Birth Date:</label>
+              <input type="date" id="birthdate" name="birthdate" required>
+              <span class="error-message" id="birthdateError"></span>
+            </div>
+
+            <div class="form-group">
+              <label>Gender:</label>
+              <div class="radio-group">
+                <label class="radio-label">
+                  <input type="radio" id="male" name="gender" value="Male" required>
+                  <span class="radio-text">Male</span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" id="female" name="gender" value="Female" required>
+                  <span class="radio-text">Female</span>
+                </label>
+              </div>
+              <span class="error-message" id="genderError"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message:</label>
+              <textarea id="message" name="message" rows="5" required></textarea>
+              <span class="error-message" id="messageError"></span>
+            </div>
+
+            <button type="submit">Send Message</button>
+          </form>
+        </div>
+        
+        <div class="output-section">
+          <div class="current-time" id="currentTime"></div>
+          <div id="result"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="creator-info">
+      <img src="PAS FOTO FADILA NUR AZIZAH.jpg" alt="Fadila Nur Azizah" class="creator-avatar">
+      <div class="creator-text">
+        <h4>Created by Fadila Nur Azizah</h4>
+        <p>Web Developer & UI/UX Designer</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // DOM Content (running JavaScript code)
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get user name
+        displayWelcomeMessage();
+        
+        // Initialize form validation
+        initializeForm();
+        
+        // Initialize smooth scrolling
+        initializeSmoothScrolling();
+        
+        // Initialize navbar scroll effect
+        initializeNavbarEffect();
+        
+        // Display current time
+        displayCurrentTime();
+        
+        // Update time every second
+        setInterval(displayCurrentTime, 1000);
+    });
+
+    // Function to display current time
+    function displayCurrentTime() {
+        const timeElement = document.getElementById('currentTime');
+        const now = new Date();
+        const options = { 
+            weekday: 'short', 
+            year: 'numeric', 
+            month: 'short', 
+            day: '2-digit', 
+            hour: '2-digit', 
+            minute: '2-digit',
+            second: '2-digit',
+            timeZoneName: 'short'
+        };
+        const formattedTime = now.toLocaleDateString('en-US', options);
+        timeElement.textContent = `Current time : ${formattedTime}`;
+    }
+
+    // Fungsi menampilkan pesan selamat datang secara personal
+    function displayWelcomeMessage() {
+        const welcomeElement = document.getElementById('welcome');
+        
+        // Try to get user name from memory (since we can't use sessionStorage in artifacts)
+        let userName = window.currentUser || null;
+        
+        // Meminta memasukkan nama
+        if (!userName) {
+            userName = prompt('Silakan masukkan nama Anda:');
+            if (userName && userName.trim() !== '') {
+                window.currentUser = userName.trim(); // Store in memory instead of sessionStorage
+            } else {
+                userName = 'Guest';
+            }
+        }
+        
+        // Display welcome message with typing effect
+        const welcomeText = `Hi ${userName}, Welcome To Website`;
+        typeWriter(welcomeElement, welcomeText);
+    }
+
+    // Typing effect function
+    function typeWriter(element, text) {
+        element.innerHTML = '';
+        let i = 0;
+        
+        function type() {
+            if (i < text.length) {
+                element.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, 80);
+            }
+        }
+        
+        setTimeout(type, 1000);
+    }
+
+    // Initialize form validation and submission
+    function initializeForm() {
+        const form = document.getElementById('contactForm');
+        const nameInput = document.getElementById('name');
+        const birthdateInput = document.getElementById('birthdate');
+        const genderInputs = document.querySelectorAll('input[name="gender"]');
+        const messageInput = document.getElementById('message');
+        const resultDiv = document.getElementById('result');
+
+        // Clear previous error messages
+        function clearErrors() {
+            const errorMessages = document.querySelectorAll('.error-message');
+            const errorInputs = document.querySelectorAll('.error');
+            
+            errorMessages.forEach(msg => msg.textContent = '');
+            errorInputs.forEach(input => input.classList.remove('error'));
+        }
+
+        // Display error message
+        function showError(fieldId, message) {
+            const errorElement = document.getElementById(fieldId + 'Error');
+            const inputElement = document.getElementById(fieldId) || document.querySelector(`input[name="${fieldId}"]`);
+            
+            if (errorElement) {
+                errorElement.textContent = message;
+            }
+            if (inputElement) {
+                inputElement.classList.add('error');
+            }
+        }
+
+        // Validate form fields
+        function validateForm() {
+            clearErrors();
+            let isValid = true;
+
+            // Validate name
+            const nameValue = nameInput.value.trim();
+            if (nameValue === '') {
+                showError('name', 'Name is required');
+                isValid = false;
+            } else if (nameValue.length < 2) {
+                showError('name', 'Name must be at least 2 characters long');
+                isValid = false;
+            } else if (!/^[a-zA-Z\s]+$/.test(nameValue)) {
+                showError('name', 'Name can only contain letters and spaces');
+                isValid = false;
+            }
+
+            // Validate birthdate
+            const birthdateValue = birthdateInput.value;
+            if (birthdateValue === '') {
+                showError('birthdate', 'Birth date is required');
+                isValid = false;
+            } else {
+                const birthDate = new Date(birthdateValue);
+                const today = new Date();
+                const age = today.getFullYear() - birthDate.getFullYear();
+                
+                if (birthDate >= today) {
+                    showError('birthdate', 'Birth date cannot be today or in the future');
+                    isValid = false;
+                } else if (age > 120) {
+                    showError('birthdate', 'Please enter a valid birth date');
+                    isValid = false;
+                }
+            }
+
+            // Validate gender
+            const selectedGender = document.querySelector('input[name="gender"]:checked');
+            if (!selectedGender) {
+                showError('gender', 'Please select a gender');
+                isValid = false;
+            }
+
+            // Validate message
+            const messageValue = messageInput.value.trim();
+            if (messageValue === '') {
+                showError('message', 'Message is required');
+                isValid = false;
+            } else if (messageValue.length < 10) {
+                showError('message', 'Message must be at least 10 characters long');
+                isValid = false;
+            } else if (messageValue.length > 500) {
+                showError('message', 'Message cannot exceed 500 characters');
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        // Calculate age
+        function calculateAge(birthdate) {
+            const today = new Date();
+            const birthDate = new Date(birthdate);
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const monthDiff = today.getMonth() - birthDate.getMonth();
+            
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            
+            return age;
+        }
+
+        // Handle form submission
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            if (validateForm()) {
+                const formData = new FormData(form);
+                const name = formData.get('name').trim();
+                const birthdate = formData.get('birthdate');
+                const gender = formData.get('gender');
+                const message = formData.get('message').trim();
+                const age = calculateAge(birthdate);
+
+                // Format birth date
+                const birthDateObj = new Date(birthdate);
+                const formattedBirthDate = birthDateObj.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+
+                // Display result
+                resultDiv.innerHTML = `
+                    <div class="result-content">
+                        <h4 style="color: #1e3c72; margin-bottom: 1rem;">Message Received Successfully! ✅</h4>
+                        <p><strong>Name:</strong> ${name}</p>
+                        <p><strong>Birth Date:</strong> ${formattedBirthDate}</p>
+                        <p><strong>Age:</strong> ${age} years old</p>
+                        <p><strong>Gender:</strong> ${gender}</p>
+                        <p><strong>Message:</strong></p>
+                        <p style="background: #f8f9fa; padding: 0.8rem; border-radius: 8px; border-left: 4px solid #1e3c72; margin-top: 0.5rem;">${message}</p>
+                        <p style="margin-top: 1rem; color: #28a745; font-weight: 600;">Thank you for contacting BlueTech! We will get back to you soon.</p>
+                    </div>
+                `;
+
+                // Scroll to result
+                resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+                // Reset form
+                form.reset();
+                clearErrors();
+
+                // Show success animation
+                resultDiv.style.opacity = '0';
+                setTimeout(() => {
+                    resultDiv.style.transition = 'opacity 0.5s ease';
+                    resultDiv.style.opacity = '1';
+                }, 100);
+            }
+        });
+
+        // Real-time validation
+        nameInput.addEventListener('blur', function() {
+            const nameValue = this.value.trim();
+            if (nameValue !== '') {
+                if (nameValue.length < 2) {
+                    showError('name', 'Name must be at least 2 characters long');
+                } else if (!/^[a-zA-Z\s]+$/.test(nameValue)) {
+                    showError('name', 'Name can only contain letters and spaces');
+                } else {
+                    document.getElementById('nameError').textContent = '';
+                    this.classList.remove('error');
+                }
+            }
+        });
+
+        messageInput.addEventListener('input', function() {
+            const messageValue = this.value.trim();
+            const messageError = document.getElementById('messageError');
+            
+            if (messageValue.length > 500) {
+                showError('message', 'Message cannot exceed 500 characters');
+            } else if (messageValue.length > 0 && messageValue.length < 10) {
+                showError('message', 'Message must be at least 10 characters long');
+            } else {
+                messageError.textContent = '';
+                this.classList.remove('error');
+            }
+        });
+    }
+
+    // Initialize smooth scrolling for navigation links
+    function initializeSmoothScrolling() {
+        const navLinks = document.querySelectorAll('nav a[href^="#"]');
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    const navHeight = document.querySelector('nav').offsetHeight;
+                    const targetPosition = targetElement.offsetTop - navHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    }
+
+    // Initialize navbar scroll effect
+    function initializeNavbarEffect() {
+        const navbar = document.querySelector('nav');
+        let lastScrollTop = 0;
+
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Add/remove shadow based on scroll position
+            if (scrollTop > 50) {
+                navbar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.3)';
+                navbar.style.backdropFilter = 'blur(15px)';
+            } else {
+                navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+                navbar.style.backdropFilter = 'blur(10px)';
+            }
+
+            // Hide/show navbar on scroll
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                // Scrolling down
+                navbar.style.transform = 'translateY(-100%)';
+            } else {
+                // Scrolling up
+                navbar.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+    }
+
+    // Add some interactive effects
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add hover effect to stat cards
+        const statCards = document.querySelectorAll('.stat');
+        statCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add parallax effect to banner
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const banner = document.querySelector('.banner-photo img');
+            if (banner) {
+                banner.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Add animation to elements when they come into view
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for scroll animations
+        const sections = document.querySelectorAll('section');
+        sections.forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(section);
+        });
+    });
+  </script>
+</body>
+</html>
